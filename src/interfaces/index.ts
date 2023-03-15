@@ -15,3 +15,9 @@ export interface IProducts{
 export interface IOrders{
   id: number;
 }
+
+export interface IOrdersProducts{
+  id: number;
+  userId: number;
+  productsIds: number;
+}
