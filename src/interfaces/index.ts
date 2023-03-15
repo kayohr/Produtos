@@ -2,7 +2,7 @@ export interface IUsers {
   id?: number;
   username: string;
   vocation: string;
-  password?: string;
+  password: string;
   level: number;
 }
   
