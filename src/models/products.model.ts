@@ -1,15 +1,17 @@
-import { RowDataPacket } from 'mysql2';
-import { IOrders } from '../interfaces';
+import { ResultSetHeader } from 'mysql2';
+import { IOrders, IProducts } from '../interfaces';
 import connection from './connection';
 
-const creatProduct = async (product: IOrders): Promise<IOrders[]> => {
-  const { username, amount } = product;
-  const result = await connection.execute<IOrders[] & RowDataPacket[]>(`
-  INSERT INTO Trybesmith.products (username, amount) VALUES (?, ?)
-    `, [username, amount]);
+const creatProduct = async (product: IProducts): Promise<IOrders> => {
+  const { name, amount } = product;
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(`
+  INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)
+    `, [name, amount]);
     
-  const [insertId] = result;
-  return insertId;
+  //   const [insertId] = result;
+  console.log('model', { userId: insertId, ...product });
+  
+  return { id: insertId, ...product };
 };
 
 const userModel = { creatProduct };

@@ -6,11 +6,11 @@ export interface IUsers {
   level: number;
 }
   
-export interface IProducts extends IUsers {
+export interface IProducts{
+  name: string;
   amount: string;
-  orderId: number;
 }
 
-export interface IOrders extends IProducts{
-  userId: number;
+export interface IOrders{
+  id: number;
 }
