@@ -9,6 +9,7 @@ export interface IUsers {
 export interface IProducts{
   name: string;
   amount: string;
+  id?: number;
 }
 
 export interface IOrders{
